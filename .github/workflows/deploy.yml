@@ -30,6 +30,8 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          BASE_URL: /shiguangji
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

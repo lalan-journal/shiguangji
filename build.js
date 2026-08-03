@@ -13,6 +13,9 @@ const OUT_DIR = path.join(ROOT, 'public');
 const ASSETS_OUT = path.join(OUT_DIR, 'assets');
 const SRC_ASSETS = path.join(ROOT, 'assets');
 
+// GitHub Pages 子目录前缀（本地预览为 ""，部署时为 "/shiguangji"）
+const BASE = process.env.BASE_URL || "";
+
 // ---- 分类配置（想加减分类改这里即可）----
 const CATEGORIES = {
   markets:    { name: '股市基金', desc: '每一日持仓日记，记账户浮沉，也记心湖涟漪' },
@@ -94,7 +97,7 @@ function readPosts() {
         excerpt: data.excerpt || plainExcerpt(content),
         html: marked.parse(content),
         readingTime: readingTime(content),
-        url: `/posts/${cat}/${slug}.html`,
+        url: `${BASE}/posts/${cat}/${slug}.html`,
       });
     });
   }
@@ -105,7 +108,7 @@ function readPosts() {
 // ---------- 布局 ----------
 function layout({ title, body, active = '', desc = '' }) {
   const catNav = Object.entries(CATEGORIES).map(([k, c]) =>
-    `<a href="/category/${k}.html" class="${active === k ? 'cur' : ''}">${c.name}</a>`).join('');
+    `<a href="${BASE}/category/${k}.html" class="${active === k ? 'cur' : ''}">${c.name}</a>`).join('');
   const social = (SITE.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
   const contactLine = SITE.contact ? `<span class="contact">${SITE.contact.label} · ${SITE.contact.value}</span>` : '';
   return `<!doctype html>
@@ -116,16 +119,16 @@ function layout({ title, body, active = '', desc = '' }) {
 <title>${title} · ${SITE.title}</title>
 <meta name="description" content="${desc || SITE.subtitle}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="${BASE}/assets/style.css">
 </head>
 <body>
 <header class="site-head">
   <div class="wrap head-inner">
-    <a class="brand" href="/index.html">${SITE.title}</a>
+    <a class="brand" href="${BASE}/index.html">${SITE.title}</a>
     <nav class="nav">
-      <a href="/index.html" class="${active === 'home' ? 'cur' : ''}">首页</a>
+      <a href="${BASE}/index.html" class="${active === 'home' ? 'cur' : ''}">首页</a>
       ${catNav}
-      <a href="/about.html" class="${active === 'about' ? 'cur' : ''}">关于</a>
+      <a href="${BASE}/about.html" class="${active === 'about' ? 'cur' : ''}">关于</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" aria-label="切换主题">◐</button>
   </div>
@@ -140,7 +143,7 @@ ${body}
     <p class="foot-copy">© ${new Date().getFullYear()} ${SITE.author || SITE.title}</p>
   </div>
 </footer>
-<script src="/assets/main.js"></script>
+<script src="${BASE}/assets/main.js"></script>
 </body>
 </html>`;
 }
@@ -154,7 +157,7 @@ function catBadge(cat) {
 function homePage(posts) {
   const cats = Object.entries(CATEGORIES).map(([k, c]) => {
     const count = posts.filter(p => p.category === k).length;
-    return `<a class="cat-card" href="/category/${k}.html">
+    return `<a class="cat-card" href="${BASE}/category/${k}.html">
       <span class="cat-name">${c.name}</span>
       <span class="cat-count">${count} 篇</span>
       <span class="cat-desc">${c.desc}</span>
@@ -219,7 +222,7 @@ function postPage(p, all, idx) {
     </nav>`;
   const body = `
   <article class="post">
-    <a class="back" href="/category/${p.category}.html">← 回到「${CATEGORIES[p.category].name}」</a>
+    <a class="back" href="${BASE}/category/${p.category}.html">← 回到「${CATEGORIES[p.category].name}」</a>
     <div class="post-meta">${catBadge(p.category)}<time>${fmtDate(p.date)}</time><span class="rt">约 ${p.readingTime} 分钟</span></div>
     <h1 class="post-title">${p.title}</h1>
     <div class="post-body">${p.html}</div>
