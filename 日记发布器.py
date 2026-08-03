@@ -89,7 +89,7 @@ class App:
         f3.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
         self.text = scrolledtext.ScrolledText(
             f3, font=("Microsoft YaHei UI", 10), wrap=tk.WORD,
-            bg="#1e1e1e", fg="#d4d4d4", insertbackground="white"
+            bg="#F5F5F5", fg="#333333", insertbackground="#333"
         )
         self.text.pack(fill=tk.BOTH, expand=True)
 
@@ -101,7 +101,7 @@ class App:
         ttk.Button(f4, text="清空", command=self._clear).pack(side=tk.RIGHT, padx=5)
 
         self.status = ttk.Label(self.root, text="就绪", anchor="w",
-                                background="#333", foreground="#aaa")
+                                background="#E0E0E0", foreground="#333")
         self.status.pack(fill=tk.X)
 
         self.root.bind("<Control-Return>", lambda e: self._publish())
