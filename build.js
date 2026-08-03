@@ -112,7 +112,7 @@ function layout({ title, body, active = '', desc = '' }) {
   const social = (SITE.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
   const contactLine = SITE.contact ? `<span class="contact">${SITE.contact.label} · ${SITE.contact.value}</span>` : '';
   return `<!doctype html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
