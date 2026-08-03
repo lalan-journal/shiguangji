@@ -141,6 +141,7 @@ ${body}
     <div class="foot-social">${contactLine || social || ''}</div>
     <p class="foot-note">${SITE.footer || '用 Markdown 写就，静态生成'}</p>
     <p class="foot-copy">© ${new Date().getFullYear()} ${SITE.author || SITE.title}</p>
+    <p class="foot-disclaimer">本站内容仅供个人记录与分享，不构成任何投资建议。所有观点仅代表作者个人。</p>
   </div>
 </footer>
 <script src="${BASE}/assets/main.js"></script>
@@ -227,6 +228,16 @@ function postPage(p, all, idx) {
     <h1 class="post-title">${p.title}</h1>
     <div class="post-body">${p.html}</div>
     ${p.tags.length ? `<div class="tags post-tags">${p.tags.map(t => `<span class="tag">#${t}</span>`).join('')}</div>` : ''}
+    <div class="share-bar">
+      <span class="share-label">分享：</span>
+      <button class="share-btn" onclick="copyLink()">复制链接</button>
+    </div>
+    <div class="giscus-comments" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+      <p style="color:var(--muted);text-align:center">
+        评论区需安装 Giscus App<br>
+        <a href="https://github.com/apps/giscus" target="_blank" style="color:var(--accent)">安装 Giscus</a> 后可启用
+      </p>
+    </div>
     ${nav}
   </article>`;
   return layout({ title: p.title, body, desc: p.excerpt });
