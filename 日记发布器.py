@@ -58,7 +58,21 @@ class App:
         self.root.title("拾光集 · 日记发布器")
         self.root.geometry("680x620")
         self.root.minsize(520, 480)
+        self._apply_theme()
         self._build()
+
+    def _apply_theme(self):
+        style = ttk.Style()
+        style.theme_use("clam")
+        BG, BG_DARK, FG = "#F0F0F0", "#E0E0E0", "#333333"
+        style.configure(".", background=BG, foreground=FG)
+        style.configure("TFrame", background=BG)
+        style.configure("TLabel", background=BG, foreground=FG)
+        style.configure("TLabelframe", background=BG)
+        style.configure("TLabelframe.Label", background=BG, foreground=FG)
+        style.configure("TButton", background=BG_DARK, foreground=FG,
+                        font=("Microsoft YaHei UI", 9), padding=[8, 3])
+        style.map("TButton", background=[("active", "#D0D0D0")])
 
     def _build(self):
         # --- Category ---
@@ -89,7 +103,7 @@ class App:
         f3.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
         self.text = scrolledtext.ScrolledText(
             f3, font=("Microsoft YaHei UI", 10), wrap=tk.WORD,
-            bg="#F5F5F5", fg="#333333", insertbackground="#333"
+            bg="#F0F0F0", fg="#333333", insertbackground="#333"
         )
         self.text.pack(fill=tk.BOTH, expand=True)
 
