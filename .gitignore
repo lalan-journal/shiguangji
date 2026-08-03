@@ -3,3 +3,4 @@ public/
 .workbuddy/
 .DS_Store
 *.log
+publisher_config.json
