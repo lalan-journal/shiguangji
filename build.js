@@ -232,11 +232,22 @@ function postPage(p, all, idx) {
       <span class="share-label">分享：</span>
       <button class="share-btn" onclick="copyLink()">复制链接</button>
     </div>
-    <div class="giscus-comments" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
-      <p style="color:var(--muted);text-align:center">
-        评论区需安装 Giscus App<br>
-        <a href="https://github.com/apps/giscus" target="_blank" style="color:var(--accent)">安装 Giscus</a> 后可启用
-      </p>
+    <div class="comments" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+      <script src="https://giscus.app/client.js"
+        data-repo="lalan-journal/shiguangji"
+        data-repo-id="R_kgDOTsmHxQ"
+        data-category="General"
+        data-category-id="DIC_kwDOTsmHxc4DClTC"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+      </script>
     </div>
     ${nav}
   </article>`;
