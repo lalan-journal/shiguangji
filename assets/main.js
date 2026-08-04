@@ -12,3 +12,14 @@
     });
   }
 })();
+
+// 复制链接
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(function() {
+    var btn = document.querySelector('.share-btn');
+    var orig = btn.textContent;
+    btn.textContent = '已复制!';
+    btn.style.background = '#4CAF50';
+    setTimeout(function() { btn.textContent = orig; btn.style.background = ''; }, 2000);
+  });
+}

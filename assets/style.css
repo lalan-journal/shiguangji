@@ -193,3 +193,22 @@ a { color: inherit; text-decoration: none; }
   .cat-grid { grid-template-columns: 1fr 1fr; }
   .brand { font-size: 18px; }
 }
+
+/* ---- 分享按钮 ---- */
+.share-bar {
+  margin: 2rem 0 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.share-label { color: var(--muted); font-size: 0.9rem; }
+.share-btn {
+  background: var(--accent); color: #fff; border: none;
+  padding: 6px 16px; border-radius: 6px; cursor: pointer;
+  font-size: 0.85rem; font-family: var(--sans);
+}
+.share-btn:hover { opacity: 0.85; }
+
+/* ---- 免责声明 ---- */
+.foot-disclaimer {
+  margin-top: 0.5rem; font-size: 0.75rem; color: var(--faint);
+  max-width: 480px; margin-left: auto; margin-right: auto;
+}
