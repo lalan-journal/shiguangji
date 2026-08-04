@@ -373,8 +373,14 @@ class App:
             git_do("add", filepath)
             git_do("commit", "-m", f"发布: {title}")
             r = git_do("push", "origin", "master")
-            if r.returncode != 0 and ("denied" in r.stderr.lower() or "403" in r.stderr):
-                messagebox.showerror("失败", "Token 无效，请重新获取"); return
+            if r.returncode != 0:
+                err = r.stderr.lower()
+                if "denied" in err or "403" in err:
+                    messagebox.showerror("失败", "Token 无效，请重新获取"); return
+                if "could not" in err or "connect" in err or "reset" in err or "time" in err:
+                    messagebox.showwarning("部分完成",
+                        f"「{title}」已保存到本地\n网络不通，稍后重试即可自动上传\n\n提示：关掉发布器再打开就好了")
+                    self.status.config(text=f"⚠ 本地已存，待网络恢复"); return
 
             self.status.config(text=f"✅ {title}")
             messagebox.showinfo("成功", f"「{title}」已发布\nhttps://lalan-journal.github.io/shiguangji/")
